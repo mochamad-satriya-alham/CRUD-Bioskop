@@ -27,6 +27,9 @@
                         <p><strong>Jenis Tiket:</strong> {{ $item['type'] }}</p>
                         <p><strong>Harga:</strong> Rp{{ number_format($item['price'], 0, ',', '.') }}</p>
                         <p><strong>Jumlah:</strong> {{ $item['quantity'] }} Tiket</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ route('tiket.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        </div>
                     </div>
                 </div>
             </div>

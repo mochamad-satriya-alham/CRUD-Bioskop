@@ -17,6 +17,23 @@ class TiketRepository implements TiketRepositoryInterface
         return Tiket::with('film')->get();
     }
 
+    public function findById($id)
+    {
+        return Tiket::findOrFail($id);
+    }
+
+    public function update($id, array $data)
+    {
+        $tiket = Tiket::findOrFail($id);
+
+        if (isset($data['type'])) {
+            $data['price'] = $this->calculatePrice($data['type']);
+        }
+
+        $tiket->update($data);
+        return $tiket;
+    }
+
     private function calculatePrice($type)
     {
         return $type === 'Regular' ? 25000 : 45000;

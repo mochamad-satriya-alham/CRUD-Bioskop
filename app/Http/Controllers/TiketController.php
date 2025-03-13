@@ -40,21 +40,21 @@ class TiketController extends Controller
         return redirect()->route('tiket.index')->with('success', 'Tiket berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tiket $tiket)
+
+    public function edit($id)
     {
-        //
+        $tiket = $this->tiketRepository->findById($id);
+        $films = Film::all(); 
+        return view('ticket.edit', compact('tiket', 'films'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tiket $tiket)
+    
+    public function update(TiketRequest $request, $id)
     {
-        //
+        $this->tiketRepository->update($id, $request->validated());
+        return redirect()->route('tiket.index')->with('success', 'Tiket berhasil diperbarui!');
     }
+
 
     /**
      * Remove the specified resource from storage.
