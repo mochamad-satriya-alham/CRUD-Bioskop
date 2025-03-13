@@ -11,7 +11,7 @@
         </div>
         <div class="text" style="flex: 1; padding-left: 20px; margin-left: 10px;">
             <h2 style="font-weight: bold; color: white; margin-bottom: 20px;">Selamat Datang! <br> di Website Bioskop Online</h2>
-            <a href="#" class="btn btn-primary">Beli Tiket</a>
+            <a href="{{ route('tiket.create') }}" class="btn btn-primary">Beli Tiket</a>
         </div>
     </div>
 @endsection
