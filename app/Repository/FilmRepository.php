@@ -25,4 +25,9 @@ class FilmRepository implements FilmRepositoryInterface
     {
         return Film::where('id', $id)->update($data);
     }
+
+    public function delete($id)
+    {
+        return Film::destroy($id);
+    }
 }

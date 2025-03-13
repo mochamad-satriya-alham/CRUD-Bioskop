@@ -28,8 +28,16 @@
                             <td class="align-middle">{{ $no++ }}</td>
                             <td class="align-middle">{{ $film['Nama_film'] }}</td>
                             <td class="align-middle">
-                                <a href="{{ route('film.edit', $film['id']) }}" class="btn btn-warning">✏ Edit</a>
+                                <div class="d-flex gap-2 ">
+                                    <a href="{{ route('film.edit', $film['id']) }}" class="btn btn-warning">✏ Edit</a>
+                                    <form action="{{ route('film.delete', $film['id']) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
+                            
                         </tr>
                     @endforeach
                 </tbody>

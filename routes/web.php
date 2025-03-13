@@ -22,5 +22,6 @@ Route::prefix('film')->name('film.')->group(function(): void{
     Route::get('/', [FilmController::class, 'index'])->name('index');
     Route::get('/{id}', [FilmController::class, 'edit'])->name('edit');
     Route::patch('/{id}', [FilmController::class, 'update'])->name('update');
+    Route::delete('/{id}', [FilmController::class, 'destroy'])->name('delete');
 });
 

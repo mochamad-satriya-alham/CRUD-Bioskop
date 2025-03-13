@@ -60,8 +60,9 @@ class FilmController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Film $film)
+    public function destroy($id)
     {
-        //
+        $this->filmRepository->delete($id);
+        return redirect()->route('film.index')->with('deleted', 'Film berhasil dihapus!');
     }
 }
