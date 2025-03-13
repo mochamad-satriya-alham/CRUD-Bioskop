@@ -29,6 +29,11 @@
                         <p><strong>Jumlah:</strong> {{ $item['quantity'] }} Tiket</p>
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('tiket.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('tiket.delete', $item['id']) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -12,5 +12,6 @@ Route::prefix('tiket')->name('tiket.')->group(function(): void {
     Route::get('/', [TiketController::class, 'index'])->name('index');
     Route::get('/{id}', [TiketController::class, 'edit'])->name('edit');
     Route::patch('/{id}', [TiketController::class, 'update'])->name('update');
+    Route::delete('/{id}', [TiketController::class, 'destroy'])->name('delete');
 });
 

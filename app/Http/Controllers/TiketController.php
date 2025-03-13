@@ -56,11 +56,10 @@ class TiketController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Tiket $tiket)
+    public function destroy($id)
     {
-        //
+    $this->tiketRepository->delete($id);
+    return redirect()->route('tiket.index')->with('success', 'Tiket berhasil dihapus.');
     }
+
 }

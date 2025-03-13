@@ -34,6 +34,11 @@ class TiketRepository implements TiketRepositoryInterface
         return $tiket;
     }
 
+    public function delete($id)
+    {
+        return Tiket::destroy($id);
+    }
+
     private function calculatePrice($type)
     {
         return $type === 'Regular' ? 25000 : 45000;
