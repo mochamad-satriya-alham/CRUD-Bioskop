@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use Illuminate\Http\Request;
 use App\Repository\TiketRepositoryInterface;
+use App\Http\Requests\TiketRequest;
 
 class TiketController extends Controller
 {
@@ -17,7 +18,8 @@ class TiketController extends Controller
 
     public function index()
     {
-        //
+        $tikets = $this->tiketRepository->getAll();
+        return view('ticket.index', compact('tikets'));
     }
 
     /**
@@ -32,36 +34,10 @@ class TiketController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TiketRequest $request)
     {
-        $request->validate([
-            'film_id' => 'required',
-            'showtime' => 'required|in:12:00,15:00,19:00',
-            'studio' => 'required|in:1,2,3,4',
-            'type' => 'required|in:Regular,VIP',
-            'quantity' => 'required|integer',
-        ]);
-
-        $price = $request->type === 'Regular' ? 25000 : 45000;
-
-        $this->tiketRepository->create([
-            'film_id' => $request->film_id,
-            'showtime' => $request->showtime,
-            'studio' => $request->studio,
-            'type' => $request->type,
-            'price' => $price,
-            'quantity' => $request->quantity,
-        ]);
-
-        return redirect()->route('tiket.create')->with('success', 'Tiket berhasil ditambahkan!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tiket $tiket)
-    {
-        //
+        $this->tiketRepository->create($request->validated());
+        return redirect()->route('tiket.index')->with('success', 'Tiket berhasil ditambahkan!');
     }
 
     /**
