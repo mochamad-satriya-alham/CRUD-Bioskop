@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
 use Illuminate\Http\Request;
+use App\Repository\FilmRepositoryInterface;
 
 class FilmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $filmRepository;
+
+    public function __construct(FilmRepositoryInterface $filmRepository)
+    {
+        $this->filmRepository = $filmRepository;
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('film.create');
     }
 
     /**
@@ -28,17 +30,10 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->$filmRepository->create($request->all());
+        return redirect()->route('film.index')->with('success', 'Film berhasil ditambahkan!');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Film $film)
-    {
-        //
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
