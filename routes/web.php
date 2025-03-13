@@ -20,5 +20,7 @@ Route::prefix('film')->name('film.')->group(function(): void{
     Route::get('create', [FilmController::class, 'create'])->name('create');
     Route::post('store', [FilmController::class, 'store'])->name('store');
     Route::get('/', [FilmController::class, 'index'])->name('index');
+    Route::get('/{id}', [FilmController::class, 'edit'])->name('edit');
+    Route::patch('/{id}', [FilmController::class, 'update'])->name('update');
 });
 

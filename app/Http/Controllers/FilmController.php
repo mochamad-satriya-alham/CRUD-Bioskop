@@ -38,17 +38,23 @@ class FilmController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Film $film)
+    public function edit($id)
     {
-        //
+        $film = $this->filmRepository->findById($id);
+        return view('film.edit', compact('film'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Film $film)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'Nama_film' => 'required|max:255|unique:films,Nama_film,' . $id,
+        ]);
+
+        $this->filmRepository->update($id, $validatedData);
+        return redirect()->route('film.index')->with('success', 'Film berhasil diperbarui!');
     }
 
     /**

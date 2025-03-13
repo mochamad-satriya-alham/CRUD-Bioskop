@@ -15,4 +15,14 @@ class FilmRepository implements FilmRepositoryInterface
     {
         return Film::create($data); 
     }
+
+    public function findById($id)
+    {
+        return Film::findOrFail($id); 
+    }
+
+    public function update($id, array $data)
+    {
+        return Film::where('id', $id)->update($data);
+    }
 }
