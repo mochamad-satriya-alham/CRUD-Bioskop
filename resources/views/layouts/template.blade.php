@@ -54,7 +54,7 @@
                         <a class="nav-link fw-bold" href="{{ route('tiket.index') }}">Tiket</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#">Film</a>
+                        <a class="nav-link fw-bold" href="{{ route('film.index') }}">Film</a>
                     </li>
                 </ul>
             </div>

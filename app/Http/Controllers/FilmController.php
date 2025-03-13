@@ -16,7 +16,8 @@ class FilmController extends Controller
 
     public function index()
     {
-        //
+        $films = $this->filmRepository->getAll();
+        return view('film.index', compact('films')); 
     }
 
 
@@ -30,10 +31,10 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        $this->$filmRepository->create($request->all());
+        $this->filmRepository->create($request->all());
         return redirect()->route('film.index')->with('success', 'Film berhasil ditambahkan!');
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */
