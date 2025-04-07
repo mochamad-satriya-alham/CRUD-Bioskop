@@ -1,14 +1,24 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Tiket;
 
 use App\Models\Tiket;
+use App\Services\TicketPriceCalculator;
+use App\Repository\Tiket\TiketRepositoryInterface;
 
 class TiketRepository implements TiketRepositoryInterface
 {
+    protected TicketPriceCalculator $priceCalculator;
+
+    public function __construct(TicketPriceCalculator $priceCalculator)
+    {
+        $this->priceCalculator = $priceCalculator;
+    }
+
+
     public function create (array $data)
     {
-        $data['price'] = $this->calculatePrice($data['type']);
+        $data['price'] = $this->priceCalculator->calculate($data['type']);
         return Tiket::create($data);
     }
 
@@ -27,7 +37,7 @@ class TiketRepository implements TiketRepositoryInterface
         $tiket = Tiket::findOrFail($id);
 
         if (isset($data['type'])) {
-            $data['price'] = $this->calculatePrice($data['type']);
+            $data['price'] = $this->priceCalculator->calculate($data['type']);
         }
 
         $tiket->update($data);
@@ -39,8 +49,4 @@ class TiketRepository implements TiketRepositoryInterface
         return Tiket::destroy($id);
     }
 
-    private function calculatePrice($type)
-    {
-        return $type === 'Regular' ? 25000 : 45000;
-    }
 }

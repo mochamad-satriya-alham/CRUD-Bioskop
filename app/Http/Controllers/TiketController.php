@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use Illuminate\Http\Request;
-use App\Repository\TiketRepositoryInterface;
+use App\Repository\Tiket\TiketRepositoryInterface;
 use App\Http\Requests\TiketRequest;
 
 class TiketController extends Controller
