@@ -3,14 +3,14 @@
 namespace App\Repository\Tiket;
 
 use App\Models\Tiket;
-use App\Services\TicketPriceCalculator;
+use App\Services\TicketPriceCalculatorInterface;
 use App\Repository\Tiket\TiketRepositoryInterface;
 
 class TiketRepository implements TiketRepositoryInterface
 {
-    protected TicketPriceCalculator $priceCalculator;
+    protected TicketPriceCalculatorInterface $priceCalculator;
 
-    public function __construct(TicketPriceCalculator $priceCalculator)
+    public function __construct(TicketPriceCalculatorInterface $priceCalculator)
     {
         $this->priceCalculator = $priceCalculator;
     }

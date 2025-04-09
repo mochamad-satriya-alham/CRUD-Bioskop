@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class TicketPriceCalculator
+class TicketPriceCalculator implements TicketPriceCalculatorInterface
 {
     public function calculate(string $type): int
     {

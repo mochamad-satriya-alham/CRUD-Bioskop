@@ -18,9 +18,7 @@ class RepoServiceProvider extends ServiceProvider
     {
         $this->app->bind(TiketRepositoryInterface::class, TiketRepository::class);
         $this->app->bind(FilmRepositoryInterface::class, FilmRepository::class);
-        $this->app->bind(TicketPriceCalculator::class, function ($app) {
-            return new TicketPriceCalculator();
-        });
+        $this->app->bind(TicketPriceCalculatorInterface::class, TicketPriceCalculator::class);
     }
 
     /**
